@@ -13,7 +13,7 @@
 	<?php include_once $information; ?>
 	<div class="col-sm-8">
 		<div class="box profile__form">
-			<form method="post" action="<?= 'admin/profile/editpasswordProcess' ?>">
+			<form method="post" action="<?= '/admin/profile/editpasswordProcess' ?>">
 				<?php
 				echo isset($_GET['msg']) == true ? '<div class="alert alert-danger">' . $_GET['msg'] . '</div>' : null;
 				?>

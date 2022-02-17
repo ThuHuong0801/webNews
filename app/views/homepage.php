@@ -16,7 +16,7 @@
 					</section>
 					<section class="col-xs-8">
 						<h4>
-							<a href="<?= 'post?id=' . $value->id ?>"><?= $value->title ?></a>
+							<a href="<?= '/post/' . $value->id ?>"><?= $value->title ?></a>
 						</h4>
 						<span class="catename">
 							<?= $value->category() ?>
@@ -60,12 +60,15 @@
 					?>
 						<li <?php if ($currentpage == $i) {
 								echo 'class="active"';
-							} ?>><a href="<?= '/' . $i ?>"><?= $i + 1 ?></a></li>
+							} ?>><a href="<?= '/?page=' . $i ?>"><?= $i + 1 ?></a></li>
 					<?php
 					} ?>
 				</ul>
 			</div>
 		</section>
-		<?php include_once $sidebar; ?>
+		<!-- <?php include_once $sidebar; ?> -->
+		<?php $_Path = explode('views', __DIR__)[0] . 'views/layout/' . $sidebar;
+				include_once $_Path;
+		?>
 	</section>
 </section>

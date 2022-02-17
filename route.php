@@ -31,10 +31,14 @@ Route::get('/admin/posts/update/{id}', 'AdminController@updatePost');
 Route::get('/admin/posts/delete/{id}', 'AdminController@removePost');
 
 Route::get('/admin/site/setting', 'AdminController@siteSetting');
+Route::post('/admin/site/saveSetting', 'AdminController@saveSetting');
 
 Route::get('/admin/profile/edit', 'AdminController@edit');
+Route::post('/admin/profile/saveEdit', 'AdminController@saveEdit');
 Route::get('/admin/profile/editemail', 'AdminController@changeEmail');
+Route::post('/admin/profile/editemailProcess', 'AdminController@editemailProcess');
 Route::get('/admin/profile/editpassword', 'AdminController@changePassword');
+Route::post('/admin/profile/editpasswordProcess', 'AdminController@editpasswordProcess');
 
 
 $router = new Route;

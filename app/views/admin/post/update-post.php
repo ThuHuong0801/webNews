@@ -59,7 +59,7 @@
 
 			<?php echo isset($_GET['msg']) == true ? '<div class="alert alert-danger">' . $_GET['msg'] . '</div>' : null; ?>
 
-			<form action="<?= '/admin/posts/save?id=' . $post->id ?>" method="post" enctype="multipart/form-data">
+			<form action="<?= '/admin/posts/save'?>" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="title"><b>Title: </b></label>
 					<input type="text" class="form-control" id="title" name="title" placeholder="Title" value="<?= $post->title ?>" onkeyup="ChangeToSlug()">

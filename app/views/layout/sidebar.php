@@ -29,7 +29,7 @@
 				<section class="fahsion__news col-lg-6">
 					<img src="<?= '/images/uploaded/' . $value->thumbnail ?>" alt="">
 					<h4>
-						<a href="<?='post?id=' . $value->id ?>"><?= $value->title ?></a>
+						<a href="<?='/post?id=' . $value->id ?>"><?= $value->title ?></a>
 					</h4>
 					<section class="clear"></section>
 				</section>

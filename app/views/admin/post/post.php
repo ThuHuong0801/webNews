@@ -55,8 +55,8 @@
               <td><?= $value->owner() ?></td>
               <td><?= $value->post_time ?></td>
               <td>
-                <a href="<?= 'admin/posts/update?id=' . $value->id ?>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
-                <button type="button" onclick="alert('Bạn có chắc chắn muốn xóa không?')" class="btn btn-danger btn-sm"><a href="<?= 'admin/posts/delete?id=' . $value->id ?>"><i class="fa fa-times-circle" aria-hidden="true"></i></a></button>
+                <a href="<?= '/admin/posts/update/' . $value->id ?>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                <button type="button" onclick="alert('Bạn có chắc chắn muốn xóa không?')" class="btn btn-danger btn-sm"><a href="<?= '/admin/posts/delete/' . $value->id ?>"><i class="fa fa-times-circle" aria-hidden="true"></i></a></button>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -68,7 +68,7 @@
           ?>
             <li <?php if ($currentpage == $i) {
                   echo 'class="active"';
-                } ?>><a href="<?= 'admin/posts?page=' . $i ?>"><?= $i + 1 ?></a></li>
+                } ?>><a href="<?= '/admin/posts?page=' . $i ?>"><?= $i + 1 ?></a></li>
           <?php
           } ?>
         </ul>
