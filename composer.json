@@ -1,0 +1,18 @@
+{
+    "name": "mock/webnews",
+    "authors": [
+        {
+            "name": "THƯ HƯỜNG TRẦN",
+            "email": "tranthuhuong337@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Framework\\": ["app/", "libs/"]
+        },
+        "files": [
+            "commons/utils.php"
+        ]
+    }
+}
