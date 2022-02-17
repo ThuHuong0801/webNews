@@ -1,10 +1,12 @@
 <?php 
 namespace Framework\models;
+
+use Framework\config\Database;
 use Exception;
 /**
 * Class thực hiện truy vấn đến cơ sở dữ liệu, mọi class models khác đều kế thừa class này.
 */
-class BaseModel
+class BaseModel extends Database
 {
 	function insert(){
 
@@ -210,18 +212,5 @@ class BaseModel
 		foreach ($this->columns as $key) {
 			$this->{$key} = $requestArr[$key];
 		}
-	}
-	
-
-	function getConnect()
-	{
-		$servername = '127.0.0.1';
-		$dbname = 'tintuc_php2';
-		$dbusername = 'root';
-		$dbpwd = '';
-		$conn = new \PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $dbusername, $dbpwd);
-
-		$conn->setAttribute(\PDO::ATTR_EMULATE_PREPARES,TRUE);
-		return $conn;
 	}
 }
