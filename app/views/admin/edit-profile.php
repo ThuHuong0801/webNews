@@ -31,7 +31,7 @@
 					<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Your name" value="<?= $user->fullname ?>">
 				</div>
 				<div class="form-group">
-					<img src="<?= '/images/uploaded/' . $user->avatar ?>" alt="" class="thumbnail" width="150px" id="avatar_img"><br>
+					<img src="<?= '../images/uploaded/' . $user->avatar ?>" alt="" class="thumbnail" width="150px" id="avatar_img"><br>
 					<label for="avatar">Avatar:</label>
 					<input type="file" class="form-control" id="avatar" name="avatar">
 				</div>

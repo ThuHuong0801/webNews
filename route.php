@@ -39,6 +39,13 @@ Route::get('/admin/profile/editpassword', 'AdminController@changePassword');
 Route::post('/admin/profile/editpasswordProcess', 'AdminController@editpasswordProcess');
 
 
+
+//api
+Route::get('/api/v1/category', 'ApiController@getAllCategory');
+Route::get('/api/v1/post/{page}', 'ApiController@getAllPost');
+Route::get('/api/v1/post/detail/{id}', 'ApiController@getPost');
+
+
 $router = new Route;
 
 try {

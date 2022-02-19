@@ -3,8 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title><?php echo $title ?></title>
-	<link rel="icon" href="<?= '/images/' . $favicon ?>" type="image/x-icon">
+	<title>News</title>
+	<link rel="icon" href="<?= 'images/' . $favicon ?>" type="image/x-icon">
 	<link rel="stylesheet" href="<?= '/css/bootstrap/css/bootstrap.min.css' ?>">
 	<link rel="stylesheet" href="<?= '/css/css.css' ?>">
 	<link rel="stylesheet" href="<?= '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' ?>">
@@ -48,6 +48,22 @@
 		});
 	</script>
 	<style>
+		ul.pagination li.active a {
+			background-color: #d13030;
+			border-color: #d13030;
+			color: #FFF;
+		}
+
+		ul.pagination li a {
+
+			border-color: #d13030;
+			color: #d13030;
+		}
+
+		ul.pagination li a:hover {
+			color: #d13030;
+		}
+
 		.searchbox {
 			position: absolute;
 			right: 120px;
@@ -90,7 +106,6 @@
 </head>
 
 <body>
-	<?php $categorymenu = Framework\models\Category::all(); ?>
 	<header>
 		<section class="top-header hidden-xs">
 			<section class="container">
@@ -118,23 +133,8 @@
 						<a href="/"><img src="<?= '/images/logo.jpg' ?>" alt="Logo"></a>
 					</section>
 					<section class="col-lg-9">
-						<ul class="menu">
-							<li>
-								<a href="<?= '/' ?>">Homepage</a>
-							</li>
-							<?php
+						<ul class="menu" id="nav">
 
-							foreach ($categorymenu as $value) :
-							?>
-								<li>
-									<a href="<?= '/category/' . $value->id ?>"><?= $value->category_name ?></a>
-								</li>
-							<?php
-							endforeach;
-							?>
-							<li class="search" id="search" style="font-size: 25px">
-								<a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</li>
 						</ul>
 					</section>
 				</section>

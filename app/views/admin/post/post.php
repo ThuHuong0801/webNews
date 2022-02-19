@@ -42,7 +42,7 @@
           foreach ($post as $key => $value) :
           ?>
             <tr>
-              <td><img class="thumbnail" src="<?= '/images/uploaded/' . $value->thumbnail ?>" alt=""></td>
+              <td><img class="thumbnail" src="<?= '../images/uploaded/' . $value->thumbnail ?>" alt=""></td>
               <td><?= $value->title ?></td>
               <td class="detail"><?php
                                   $value->detail = strip_tags($value->detail);

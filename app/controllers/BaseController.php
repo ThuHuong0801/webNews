@@ -14,14 +14,11 @@ class BaseController
             //$$ = Khai báo biến + key
             $$key = $value;
         }
-        if(empty($layout))
-        {
+        if (empty($layout)) {
             return true;
-        }else{
+        } else {
             return require_once(self::VIEW_FOLDER . '/' . str_replace(".", '/', $layout) . '.php');
         }
-        
-
     }
 
     protected function response($data, $status = '')

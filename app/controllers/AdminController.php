@@ -5,7 +5,6 @@ namespace Framework\controllers;
 use Framework\models\User;
 use Framework\models\Post;
 use Framework\models\Category;
-use Framework\models\Comment;
 use Framework\models\Config;
 
 /**
@@ -20,8 +19,7 @@ class AdminController extends BaseController
 		$totalpost = count(Post::all());
 		$totaluser = count(User::all());
 		$totalcate = count(Category::all());
-		$totalcomment = count(Comment::all());
-		return $this->view("admin/dashboard.php", compact('totalpost', 'totaluser', 'totalcomment', 'totalcate'), "admin/adminLayout");
+		return $this->view("admin/dashboard.php", compact('totalpost', 'totaluser', 'totalcate'), "admin/adminLayout");
 	}
 
 	//category
@@ -29,6 +27,7 @@ class AdminController extends BaseController
 	{
 		$category = Category::all();
 		return $this->view("admin/category/category.php", compact("category"), "admin/adminLayout");
+		//echo json_encode($category);
 	}
 	public function addNewCategory()
 	{
@@ -132,8 +131,11 @@ class AdminController extends BaseController
 					}
 				}
 				$thumbnail['name'] = 'IMG_' . uniqid() . md5(microtime()) . '.' . $ext;
-				move_uploaded_file($thumbnail['tmp_name'], '/images/uploaded/' . $thumbnail['name']);
-				$post->thumbnail = $thumbnail['name'];
+				$t = explode('app', __DIR__)[0] . "public/images/uploaded/";
+				$name = 'thuhuong' . "-" . basename($thumbnail['name']);
+				$h = $t . $name;
+				move_uploaded_file($thumbnail['tmp_name'], $h);
+				$post->thumbnail = $name;
 			}
 			$post->post_time = \date("Y:m:d h:m:s");
 			if ($id) {
@@ -235,8 +237,8 @@ class AdminController extends BaseController
 		$stt = isset($_GET['status']) ? $_GET['status'] : null;
 		$decode = json_decode($_SESSION['user']);
 		if ($stt == "ok") {
-		$user = User::findOne($decode->id);
-		$_SESSION['user'] = json_encode($user);
+			$user = User::findOne($decode->id);
+			$_SESSION['user'] = json_encode($user);
 		}
 		$decode = json_decode($_SESSION['user']);
 		$information = 'information.php';

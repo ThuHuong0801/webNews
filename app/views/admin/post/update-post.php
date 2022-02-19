@@ -60,6 +60,7 @@
 			<?php echo isset($_GET['msg']) == true ? '<div class="alert alert-danger">' . $_GET['msg'] . '</div>' : null; ?>
 
 			<form action="<?= '/admin/posts/save'?>" method="post" enctype="multipart/form-data">
+			<input type="text" name='id' hidden value="<?= $post->id ?>">
 				<div class="form-group">
 					<label for="title"><b>Title: </b></label>
 					<input type="text" class="form-control" id="title" name="title" placeholder="Title" value="<?= $post->title ?>" onkeyup="ChangeToSlug()">
@@ -69,7 +70,7 @@
 					<input type="text" class="form-control" id="url" name="url" placeholder="URL" value="<?= $post->post_url ?>">
 				</div>
 				<div class="form-group">
-					<img src="<?= '/images/uploaded/' . $post->thumbnail ?>" alt="" id="thumbnail_img" width="200px"><br>
+					<img src="<?= '../images/uploaded/' . $post->thumbnail ?>" alt="" id="thumbnail_img" width="200px"><br>
 					<label for="thumbnail"><b>Thumbnail</b></label>
 					<input type="file" class="form-control" id="thumbnail" name="thumbnail" placeholder="Thumbnail">
 				</div>

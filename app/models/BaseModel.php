@@ -28,7 +28,6 @@ class BaseModel extends Database
 		}
 		$sql = rtrim($sql, ", ");
 		$sql .= ")";
-		// var_dump($sql);die;
 		$conn = $this->getConnect();
 		
 		$conn->beginTransaction(); 
@@ -101,16 +100,16 @@ class BaseModel extends Database
 	}
 	public function limit($args = null)
 	{
-		$this->queryBuilder.= ' LIMIT ' ;
+		$this->limit = ' LIMIT ' ;
 		if (!is_array($args)) {
-			$this->queryBuilder.= $args;
+			$this->limit .= $args;
 		}
 		else {
 			if (count($args) == 1) {
-			$this->queryBuilder.= $args[0];
+			$this->limit .= $args[0];
 			}
 			elseif (count($args) == 2) {
-				$this->queryBuilder.= $args[0] . ", " . $args[1];
+				$this->limit .= $args[0] . ", " . $args[1];
 			}
 		}
 		return $this;
@@ -202,6 +201,8 @@ class BaseModel extends Database
 
 	function get(){
 		$conn = $this->getConnect();
+		$limit = $this->limit ?? '';
+		$this->queryBuilder = "select * from " . $this->tableName.$limit;
 		$stmt = $conn->prepare($this->queryBuilder);
 		$stmt->execute();
 		$result = $stmt->fetchAll(\PDO::FETCH_CLASS, get_class($this));
@@ -212,5 +213,14 @@ class BaseModel extends Database
 		foreach ($this->columns as $key) {
 			$this->{$key} = $requestArr[$key];
 		}
+	}
+
+	public function total()
+	{
+		$sql = "SELECT count(*) FROM $this->tableName";
+		$conn = $this->getConnect();
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetchColumn();
 	}
 }

@@ -22,9 +22,5 @@ class Post extends BaseModel
 		$category = Category::findOne($this->category_id)->category_name;
 		return $category;
 	}
-	public function comment(){
-		$comment = Comment::where(['post_id', $this->id])->get();
-		return $comment;
-	}
 }
 ?>

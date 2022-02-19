@@ -23,7 +23,6 @@
 				<p class="paragraph__content">
 					<?= $post->detail ?>
 				</p>
-				<?php echo $comment ?>
 			</section>
 		</section>
 		<?php $_Path = explode('views', __DIR__)[0] . 'views/layout/' . $sidebar;

@@ -26,13 +26,6 @@
 		background: #745af2;
 		color: #FFF;
 	}
-
-	.countcomment {
-		height: 100px;
-		background: #ef5350;
-		color: #FFF;
-	}
-
 	i {
 		font-size: 80px !important;
 	}
@@ -74,18 +67,6 @@
 			<div class="col-xs-7">
 				<h2> Category</h2>
 				<h1><?php echo $totalcate ?></h1>
-			</div>
-		</div>
-		<div style="clear: both;"></div>
-	</div>
-	<div class="col-xs-3">
-		<div class="col-xs-12 countcomment">
-			<div class="col-xs-5">
-				<i class="fa fa-comments" aria-hidden="true"></i>
-			</div>
-			<div class="col-xs-7">
-				<h2> Comment</h2>
-				<h1><?php echo $totalcomment ?></h1>
 			</div>
 		</div>
 		<div style="clear: both;"></div>

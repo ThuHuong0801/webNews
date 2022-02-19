@@ -43,8 +43,11 @@ if (!isset($_SESSION['user']) && !isset($_COOKIE['remember_token'])) {
 		<link rel="stylesheet" href="<?= '/css/bootstrap/css/bootstrap.min.css' ?>">
 		<link rel="stylesheet" href="<?= '/fonts/font-awesome-4.7.0/css/font-awesome.css' ?>">
 		<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+		<link rel="stylesheet" href="/sweetalert2/sweetalert2.min.css">
+
 		<script src="<?= '/js/jquery.js' ?>"></script>
 		<script src="<?= '/css/bootstrap/js/bootstrap.min.js' ?>"></script>
+		<script src="/sweetalert2/sweetalert2.min.js"></script>
 	</head>
 	<style>
 		* {
@@ -218,7 +221,6 @@ if (!isset($_SESSION['user']) && !isset($_COOKIE['remember_token'])) {
 				} else {
 					a = false
 				}
-				console.log(a);
 				if (a == true) {
 					$(this).addClass('hover');
 				} else {
@@ -245,9 +247,9 @@ if (!isset($_SESSION['user']) && !isset($_COOKIE['remember_token'])) {
 					<div class="float-right">
 						<?php
 						$myuser = json_decode($_SESSION['user']);
-
+						$path = 'http://' . $_SERVER['HTTP_HOST'];
 						?>
-						<img src="<?= '/images/uploaded/' . $myuser->avatar ?>" alt="" class="avatar">
+						<img src="<?= $path . '/images/uploaded/' . $myuser->avatar  ?>" alt="" class="avatar">
 						<?php
 						echo $myuser->fullname;
 						?>
@@ -260,10 +262,10 @@ if (!isset($_SESSION['user']) && !isset($_COOKIE['remember_token'])) {
 			<div class="col-sm-2 sidebar">
 				<ul class="control col-xs-12">
 					<li class="active"><a href="<?= '/admin' ?>">Dashboard</a></li>
-					<li><a href="#">Category</a>
+					<li><a>Category</a>
 						<ul class="sub-menu">
 							<li><a href="<?= '/admin/category/add'; ?>">┗ Add new</a></li>
-							<li><a href="<?= '/admin/category' ?>">┗ List category</a></li>
+							<li><a href="<?= '/admin/category'; ?>">┗ List category</a></li>
 						</ul>
 					</li>
 					<li><a href="#">Post</a>
@@ -285,14 +287,107 @@ if (!isset($_SESSION['user']) && !isset($_COOKIE['remember_token'])) {
 						</ul>
 					</li>
 				</ul>
-			</div>
 
-			<?php
-			$path = explode('views', __DIR__)[0] . 'views/' . $viewPath;
-			include_once $path;
-			?>
+			</div>
+				<?php
+				$path = explode('views', __DIR__)[0] . 'views/' . $viewPath;
+				include_once $path;
+				?>
+
 
 		</div>
+<!-- 
+		<script>
+			$(document).ready(function() {
+				let root = $('#root')
+				$(document).on('click', '#listCategory', function(e) {
+					e.preventDefault()
+					fetch('http://localhost:8000/admin/category')
+						.then(response => response.json())
+						.then(data => {
+							window.location.href='/admin/category'
+							let breadcumb = `<div class="breadcumb">
+							<div class="col-sm-10 col-sm-offset-2">
+								<div class="col-sm-12">
+								<h3>Category</h3>
+								<a href="#">Dashboard</a>
+								>
+								Category
+								</div>
+							</div>
+							</div>`
+							root.children().remove()
+							root.append(breadcumb)
+
+							let tableEl = `<div class="col-sm-2"></div>
+								<div class="col-sm-10">
+									<div class="col-sm-12">
+										<div class="box profile__form">
+											<table class="table table-hover">
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Category</th>
+													</tr>
+												</thead>
+												<tbody>`
+							data.forEach(item => {
+								tableEl += `<tr>
+								<td>${item.id}</td>
+								<td><a>${item.category_name}</a></td>
+								<td>
+									<a class="btn btn-primary btn-sm btl-cate-create"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+									<button type="button" class="btn btn-danger btn-sm btl-cate-delete" data-category-id=${item.id}><a>
+										<i class="fa fa-times-circle" aria-hidden="true"></i></a>
+									</button>
+								</td>
+								</tr>`
+							})
+							tableEl += `</tbody>
+											</table>
+										</div>
+									</div>
+								</div>`
+							root.append(tableEl)
+
+						})
+				})
+
+				$(document).on('click', '.btl-cate-delete', function(e) {
+					e.preventDefault()
+					let that = $(this)
+					Swal.fire({
+							title: 'Bạn có chắc chắn muốn xóa không?',
+							text: 'Bạn sẽ không thể khôi phục dữ liệu!',
+							icon: 'warning',
+							showCancelButton: true,
+							confirmButtonColor: '#3085d6',
+							cancelButtonColor: '#d33',
+							confirmButtonText: 'Vâng, bạn xóa đi!'
+						})
+						.then(function() {
+							fetch('http://localhost:8000/admin/category/delete/' + that.data('category-id'))
+								.then(response => response.json())
+								.then(data => {
+									if(data.code == 200){
+										Swal.fire(
+										'Đã xóa!',
+										'Category của bạn xóa thành công.',
+										'success'
+										)
+										that.parents('tr').remove()	
+									}
+							})
+						})
+						
+				})
+
+				$(document).on('click', '.btl-cate-create', function(e) {
+					root.children
+				})
+			})
+		</script> -->
+
 	</body>
 
 	</html>
